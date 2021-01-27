@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop</title>
+</head>
+
+<body>
+
+    <button id="btn">run</button>
+    <script>
+        const button = document.getElementById("btn")
+        function run() {
+            console.log(1);
+            setTimeout(() => {
+                console.log(2);
+                Promise.resolve().then(() => {
+                    console.log(3)
+                });
+            });
+            new Promise((resolve, reject) => {
+                console.log(4)
+                resolve(5)
+            }).then((data) => {
+                console.log(data);
+            })
+            setTimeout(() => {
+                console.log(6);
+            })
+            console.log(7);
+        }
+        button.addEventListener("click", () => run())
+        // 结果：1475236
+    </script>
+</body>
+
+</html>
