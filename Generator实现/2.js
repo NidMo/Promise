@@ -27,7 +27,7 @@ var context = {
   },
 };
 // 低配版invoke
-let gen = function () {
+function gen() {
   return {
     next: function () {
       value = context.done ? undefined : gen$(context);
